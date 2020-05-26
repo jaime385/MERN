@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
-
+const { MongoClient } = require('mongodb');
 //Item model
 
 const Item = require('../../models/item');
@@ -19,12 +19,14 @@ router.get('/', (req, res) => {
 
 // @router POST api/items
 //@desc Create a post
-//@access Public
+/*@access Public
 router.post('/', (req, res) => {
     const newItem = new Item({
         name: req.body.name
     });
     newItem.save().then(item => res.json(item));
-});
+});*/
+
+
 
 module.exports = router;
