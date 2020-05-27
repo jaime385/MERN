@@ -1,35 +1,42 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const items = require('./routes/api/items');
-const fetch = require('node-fetch');
+const index = require('./routes/api/routes');
+//const fetch = require('node-fetch');
 const { MongoClient } = require('mongodb');
-const router = express.Router();
 
 const app = express();
 app.use(express.json());
-
-const db = require('./config/keys').mongoURI;
-
-//Connect to mongoDB
-mongoose.connect(db).then(() => { console.log('mongoDBConnnected') }).catch(err => {
-    console.log(err);
-});
+//app.use(express.static(''));
 
 //Use routes
-app.use('/api/items', items);
-const port = process.env.port || 5000;
+app.use('/', index);
 
+const port = process.env.port || 5000;
 app.listen(port, () => { console.log(`Server started on port ${port}`) });
+
+//Connect to mongoDB
+const uri = require('./config/keys').mongoURI;
 
 async function main() {
     //https://mongodb.github.io/node-mongodb-native/3.3/api/MongoClient.html
-    const client = new MongoClient(db);
+    const client = new MongoClient(uri);
     try {
         // Connect to the MongoDB cluster
         await client.connect();
+        console.log('Connected correctly to ATLAS.');
+
+        const db = client.db("sample_airbnb");
 
         // Make the appropriate DB calls
         await listDatabases(client);
+
+        // Use the collection "listingsAndReviews"
+        const col = db.collection("listingsAndReviews");
+
+        // Find one document
+        const myDoc = await col.findOne();
+
+        // Print to the console
+        //console.log(myDoc);
 
     } catch (e) {
         console.error(e);
