@@ -7,8 +7,8 @@ const { MongoClient } = require('mongodb');
 const uri = require('../../config/keys').mongoURI;
 const client = new MongoClient(uri);
 
-router.get('/jj', async (req, res) => {
-    //res.send('hola ke ase');
+router.get('/databaseConnection', async (req, res) => {
+
     async function main() {
         //https://mongodb.github.io/node-mongodb-native/3.3/api/MongoClient.html
 
@@ -35,7 +35,8 @@ router.get('/jj', async (req, res) => {
             console.error(e);
         } finally {
             // Close the connection to the MongoDB cluster
-            await client.close();
+            //await client.close();
+            console.log('Database disconnected.')
         }
     }
 
@@ -50,5 +51,12 @@ router.get('/jj', async (req, res) => {
 
 });
 
+
+router.get('/background', async (req, res) => {
+    const backgroundImage = await fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY');
+    const image = await backgroundImage.json();
+    res.json(image);
+});
+//https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2018-12-28
 
 module.exports = router;

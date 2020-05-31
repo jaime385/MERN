@@ -1,4 +1,5 @@
 import React from 'react';
+import Clock from './clock';
 import {
   Collapse,
   Navbar,
@@ -21,21 +22,21 @@ class AppNavbar extends React.Component {
   };
   render() {
     return (
-      <div>
-        <Navbar color="dark" dark expand="sm" className="mb-5">
-          <Container>
-            <NavbarBrand href="/">React</NavbarBrand>
-            <NavbarToggler onClick={this.toggle}></NavbarToggler>
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-                <NavItem>
-                  <NavLink link="https://github.com/">Github</NavLink>
-                </NavItem>
-              </Nav>
-            </Collapse>
-          </Container>
-        </Navbar>
-      </div>
+      <Navbar color="dark" dark expand="sm" className="mb-5">
+        <Container>
+          <NavbarBrand href="/">
+            <Clock></Clock>
+          </NavbarBrand>
+          <NavbarToggler onClick={this.toggle}></NavbarToggler>
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink link="https://github.com/">Github</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Container>
+      </Navbar>
     );
   }
 }

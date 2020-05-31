@@ -5,7 +5,7 @@ const { MongoClient } = require('mongodb');
 
 const app = express();
 app.use(express.json());
-//app.use(express.static(''));
+//app.use(express.static('/client/public'));
 //app.listen(3000);
 
 const port = process.env.port || 5000;
@@ -17,6 +17,5 @@ const client = new MongoClient(uri);
 
 //Use routes
 app.use('/', index);
-
 
 module.exports = client;

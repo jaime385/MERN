@@ -1,3 +1,36 @@
-.App {
+.body {
+  color: beige;
+}
+
+.gridMaster {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: grid;
   text-align: center;
+  grid-template-columns: 33% 34% 33%;
+  grid-template-rows: 10% 45% 45%;
+  background-color: black;
+}
+
+.NavBar {
+  grid-row: 1/2;
+  grid-column: 1/4;
+}
+
+.viewer {
+  grid-row: 2/4;
+  grid-column: 1/4;
+  background-image: url('https://apod.nasa.gov/apod/image/1812/NGC1365_HaLRGBpugh1024.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.apodExplorerTitle {
+  color: whitesmoke;
+}
+
+.inputDate {
+  grid-row: 4/end;
+  grid-column: 1/4;
 }

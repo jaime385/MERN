@@ -7,20 +7,23 @@ export default class Counter extends React.Component {
   };
 
   componentDidMount() {
-    fetch('https://randomuser.me/api/')
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({ counter: data.results[0].phone });
-        console.log(data.results[0]);
-      })
-      .catch(console.log);
+    this.setState({ counter: 42 });
   }
 
   increment = () => {
-    if (this.state.loading) {
+    if (this.state.loading === true) {
       this.setState({
-        counter: this.state.counter + 1,
+        loading: false,
       });
+      fetch('databaseConnection')
+        .then((res) => res.json())
+        .then((data) => {
+          this.setState({ counter: data.accommodates });
+          console.log(data);
+        })
+        .catch(console.log);
+    } else {
+      console.log('Connection has been disconected.');
     }
   };
   render() {
@@ -32,9 +35,3 @@ export default class Counter extends React.Component {
     );
   }
 }
-
-/*const logsData = await fetch('/jj');
-const logsDataJson = await logsData.json();
-console.log(logsDataJson);
-
-*/

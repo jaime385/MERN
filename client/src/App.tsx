@@ -2,15 +2,21 @@ import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AppNavbar from './components/NavBar';
-import ShoppingList from './components/List';
-import Counter from './components/counter';
+import Calendar from './components/dateInput';
 
 function App() {
   return (
-    <div className="App">
-      <AppNavbar></AppNavbar>
-      <ShoppingList></ShoppingList>
-      <Counter></Counter>
+    <div className="gridMaster">
+      <div className="NavBar">
+        <AppNavbar></AppNavbar>
+      </div>
+      <div className="viewer">
+        <h1 className="apodExplorerTitle">APOD Explorer</h1>
+        <div className="inputDate">
+          <label className="apodExplorerTitle">Select a date: </label>
+          <Calendar></Calendar>
+        </div>
+      </div>
     </div>
   );
 }
