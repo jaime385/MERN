@@ -10,7 +10,7 @@ function App() {
       <div className="NavBar">
         <AppNavbar></AppNavbar>
       </div>
-      <div className="viewer">
+      <div className="viewer" id="viewer">
         <h1 className="apodExplorerTitle">APOD Explorer</h1>
         <div className="inputDate">
           <label className="apodExplorerTitle">Select a date: </label>
