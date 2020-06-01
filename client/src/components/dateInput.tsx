@@ -22,12 +22,12 @@ const Calendar = () => {
       .then((res) => res.json())
       .then((data) => {
         //console.log(data);
+        const backgroundImage = data.url;
         let elemento = document.getElementsByClassName('viewer');
         var x: any = document.getElementsByTagName('div').namedItem('viewer')
           ?.style;
         const newBgColor: any = 'rgb(255,255,200)';
-        const backgroundUrl =
-          "url('https://apod.nasa.gov/apod/image/1812/NGC1365_HaLRGBpugh1024.jpg')";
+        const backgroundUrl = `url('${backgroundImage}')`;
         x.setProperty('background-image', backgroundUrl);
         /*for (var i in elemento) {
           console.log(i, x);
