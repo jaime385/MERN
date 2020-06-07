@@ -4,10 +4,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
+  //const [copy, setCopyright] = useState('Copyright: ');
 
   const handleChange = (date: any) => {
     setStartDate(date);
   };
+
   const handleSelect = (date: any) => {
     const words = JSON.stringify(date);
     console.log(words);
@@ -21,28 +23,59 @@ const Calendar = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        //console.log(data);
         const backgroundImage = data.url;
-        let elemento = document.getElementsByClassName('viewer');
-        var x: any = document.getElementsByTagName('div').namedItem('viewer')
-          ?.style;
-        const newBgColor: any = 'rgb(255,255,200)';
+        console.log(data);
+
+        var image: any = document
+          .getElementsByTagName('div')
+          .namedItem('viewer')?.style;
         const backgroundUrl = `url('${backgroundImage}')`;
-        x.setProperty('background-image', backgroundUrl);
-        /*for (var i in elemento) {
-          console.log(i, x);
-        }*/
+        image.setProperty('background-image', backgroundUrl);
+        //Showing picture's author.
+        const nameCopyright: HTMLElement = document.getElementById(
+          'infoCopy'
+        ) as HTMLElement;
+        nameCopyright.innerHTML = `Copyright: ${data.copyright}`;
+        //Showing picture's info.
+        const picturesInfo: HTMLElement = document.getElementById(
+          'explanation'
+        ) as HTMLElement;
+        picturesInfo.innerHTML = `${data.explanation}`;
+        //Showing picture's name.
+        const picturesName: HTMLElement = document.getElementById(
+          'title'
+        ) as HTMLElement;
+        picturesName.innerHTML = `${data.title}`;
       })
-      .catch(console.log);
+      .catch(console.error);
   };
 
   return (
-    <Datepicker
-      selected={startDate}
-      onChange={handleChange}
-      onSelect={handleSelect}
-    />
+    <div className="dataFrame">
+      <div>
+        <h1 id="title"></h1>
+        <br></br>
+        <p id="explanation"></p>
+      </div>
+      <div className="calendarInput">
+        <h1 className="apodExplorerTitle">APOD Explorer</h1>
+        <label className="apodExplorerTitle">Select a date: </label>
+        <Datepicker
+          selected={startDate}
+          onChange={handleChange}
+          onSelect={handleSelect}
+        />
+      </div>
+      <div className="copyrightLocation">
+        <h2 className="info" id="infoCopy"></h2>
+      </div>
+    </div>
   );
 };
 
 export default Calendar;
+
+//let elemento = document.getElementsByClassName('viewer');
+/*for (var i in elemento) {
+          console.log(i, x);
+  }*/

@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AppNavbar from './components/NavBar';
 import Calendar from './components/dateInput';
+//import DataButton from './components/dataButton';
 
 function App() {
   return (
@@ -11,9 +12,7 @@ function App() {
         <AppNavbar></AppNavbar>
       </div>
       <div className="viewer" id="viewer">
-        <h1 className="apodExplorerTitle">APOD Explorer</h1>
         <div className="inputDate">
-          <label className="apodExplorerTitle">Select a date: </label>
           <Calendar></Calendar>
         </div>
       </div>

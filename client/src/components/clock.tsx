@@ -30,6 +30,6 @@ export default class Clock extends Component<{}, ClockState> {
 
   // render will know everything!
   render() {
-    return <p>The current time is {this.state.time.toLocaleTimeString()}</p>;
+    return <p>Time: {this.state.time.toLocaleTimeString()}</p>;
   }
 }
