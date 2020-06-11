@@ -68,9 +68,7 @@ const Calendar = () => {
   return (
     <div className="dataFrame">
       <div>
-        <h1 id="title"></h1>
         <br></br>
-        <p id="explanation"></p>
       </div>
       <div className="calendarInput">
         <h1 className="apodExplorerTitle">APOD Explorer</h1>
@@ -82,7 +80,7 @@ const Calendar = () => {
         />
       </div>
       <div className="copyrightLocation">
-        <h2 className="info" id="infoCopy"></h2>
+        <h2 id="infoCopy"></h2>
       </div>
     </div>
   );

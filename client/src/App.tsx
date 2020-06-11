@@ -16,6 +16,12 @@ function App() {
           <Calendar></Calendar>
         </div>
       </div>
+      <div className="info">
+        <div className="expFromApi">
+          <h1 id="title"></h1>
+          <p id="explanation"></p>
+        </div>
+      </div>
     </div>
   );
 }
