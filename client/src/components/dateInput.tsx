@@ -24,28 +24,43 @@ const Calendar = () => {
       .then((res) => res.json())
       .then((data) => {
         const backgroundImage = data.url;
-        console.log(data);
-
-        var image: any = document
-          .getElementsByTagName('div')
-          .namedItem('viewer')?.style;
-        const backgroundUrl = `url('${backgroundImage}')`;
-        image.setProperty('background-image', backgroundUrl);
-        //Showing picture's author.
-        const nameCopyright: HTMLElement = document.getElementById(
-          'infoCopy'
-        ) as HTMLElement;
-        nameCopyright.innerHTML = `Copyright: ${data.copyright}`;
-        //Showing picture's info.
-        const picturesInfo: HTMLElement = document.getElementById(
-          'explanation'
-        ) as HTMLElement;
-        picturesInfo.innerHTML = `${data.explanation}`;
-        //Showing picture's name.
-        const picturesName: HTMLElement = document.getElementById(
-          'title'
-        ) as HTMLElement;
-        picturesName.innerHTML = `${data.title}`;
+        console.log(data, data.msg);
+        if (data.msg) {
+          alert(data.msg);
+        } else {
+          var image: any = document
+            .getElementsByTagName('div')
+            .namedItem('viewer')?.style;
+          const backgroundUrl = `url('${backgroundImage}')`;
+          image.setProperty('background-image', backgroundUrl);
+          if (data.copyright) {
+            //Showing picture's author.
+            const nameCopyright: HTMLElement = document.getElementById(
+              'infoCopy'
+            ) as HTMLElement;
+            nameCopyright.innerHTML = `Copyright: ${data.copyright}`;
+          } else {
+            //Picture has got no author..
+            const nameCopyright: HTMLElement = document.getElementById(
+              'infoCopy'
+            ) as HTMLElement;
+            nameCopyright.innerHTML = `Copyright: NASA`;
+          }
+          if (data.explanation) {
+            //Showing picture's info.
+            const picturesInfo: HTMLElement = document.getElementById(
+              'explanation'
+            ) as HTMLElement;
+            picturesInfo.innerHTML = `${data.explanation}`;
+          }
+          if (data.title) {
+            //Showing picture's name.
+            const picturesName: HTMLElement = document.getElementById(
+              'title'
+            ) as HTMLElement;
+            picturesName.innerHTML = `${data.title}`;
+          }
+        }
       })
       .catch(console.error);
   };
